@@ -1,0 +1,249 @@
+/* Fonts */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
+/* Mixins */
+
+@mixin flex-column-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin card-border {
+    border-radius: .5rem;
+    box-shadow: 0 10px 0 0 rgba(black, 0.1);
+}
+
+/* Variables */
+
+// Colors
+$red: hsl(0, 100%, 74%);
+$green: hsl(154, 59%, 51%);
+$blue: hsl(248, 32%, 49%);
+$dark-blue: hsl(249, 10%, 26%);
+$grayish-blue: hsl(246, 25%, 77%);
+
+// Border
+$border-radius: 0.5rem;
+
+/* Elements */
+
+html {
+    @include flex-column-center;
+    font-size: 16px;
+
+    min-height: 100dvh;
+}
+
+body {
+    @include flex-column-center;
+    gap: 2rem;
+    
+    height: 100%;
+    width: 100%;
+    max-width: 500px;
+    
+    margin: 3rem auto;
+    margin-bottom: 0;
+    padding: 0 1rem;
+
+    background: url("images/bg-intro-mobile.png"), $red;
+}
+
+* {    
+    font-family: "Poppins", sans-serif;
+
+    box-sizing: border-box;
+}
+
+// Header 
+
+.header {
+    text-align: center;
+    
+    color: white;
+
+    /* Elements */
+
+    &__title {
+        font-size: 1.6rem;
+        line-height: 2rem;
+    }
+}
+
+// Free-Trial Card
+
+.free-trial {
+    padding: 1rem 3rem;
+
+    text-align: center;
+
+    margin-bottom: 1.5rem;
+    
+    @include card-border;
+    
+    background: $blue;
+
+    /* Elements */
+
+    &__text {
+        margin: 0;
+        
+        font-weight: 400;
+        
+        color: white;
+    }
+
+    &__try-free {
+        font-weight: 600;
+    }
+}
+
+// Form
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    
+    padding: 1.5rem;
+    
+    @include card-border;
+    
+    background: white;
+    
+    /* Elements */
+
+    &__input-icon-wrapper {
+        display: flex;
+        align-items: center; /* Center the icon vertically */
+        position: relative;
+        width: 100%;
+    }
+
+    &__input {
+        width: 100%;
+
+        padding: 1rem;
+        
+        font-weight: 500;
+        font-size: 1rem;
+
+        border: 1px solid $grayish-blue;
+        border-radius: $border-radius;
+    
+        &--error {
+            border-color: $red;
+        }
+
+        &:focus {
+            outline-color: $blue;
+        }
+    }
+
+    &__error-icon {
+        position: absolute;
+        right: 1rem;
+    }
+
+    &__error-msg {
+        margin: 0;
+        
+        text-align: end;
+        font-style: italic;
+        font-weight: 600;
+        font-size: 0.6rem;
+
+        color: $red;
+    }
+
+    &__submit-btn {
+        padding: 1rem 0;
+
+        text-transform: uppercase;
+        font-size: 1rem;
+        font-weight: 500;
+        letter-spacing: 1px;
+
+        border: 2px solid lighten($green, 15%);
+        border-right: 4px solid darken($green, 5%);
+        border-bottom: 4px solid darken($green, 5%);
+        border-radius: $border-radius;
+        
+        color: white;
+        background: $green;
+    }
+}
+
+// Terms & Service Hint
+
+.terms-and-service {
+    margin: 0;
+    padding: 0 1rem;
+
+    text-align: center;
+    font-size: .65rem;
+    line-height: 1rem;
+
+    color: $grayish-blue;
+
+    &__link {
+        font-size: .7rem;
+        font-weight: 700;
+        text-decoration: none;
+        
+        color: $red;
+    }
+}
+
+// Attribution
+
+.attribution {
+    font-size: 11px;
+    text-align: center;
+}
+
+.attribution a {
+    color: hsl(228, 45%, 44%);
+}
+
+/* Queries */
+
+@media (min-width: 1000px) {    
+    body {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+
+        max-width: calc(1000px + 5rem);
+    }
+
+    .header {
+        text-align: start;
+
+        &__title {
+            font-size: 3rem;
+            line-height: 3.4rem;
+        }
+    }
+
+    .form {
+        padding: 2rem;
+    }
+
+    .attribution {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+@media (hover: hover) {    
+    .form__submit-btn:hover {
+        filter: brightness(110%);
+        cursor: pointer;
+    }
+}
